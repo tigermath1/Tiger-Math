@@ -1,0 +1,49 @@
+import socket
+import os
+                                                                 os.system("clear")
+print("=========================================")
+print("[+] PROJECT 3: TIGER HTTP WEB SERVER     ")
+print("=========================================")
+
+HOST = '127.0.0.1'
+PORT = 8080
+
+try:
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_ST>
+                                                                     server_socket.bind((HOST, PORT))
+
+    server_socket.listen(5)                                          print(f"[*] Tiger Server is LIVE and Running on http://{HOST>
+    print("[*] Waiting for Browser Connection... Press Ctrl+C to>
+    print("-" * 55)
+
+    while True:
+                                                                         client_socket, client_address = server_socket.accept()           print(f"[+] Connection Established from User: {client_ad>
+                                                                         request = client_socket.recv(1024).decode('utf-8')       
+        html_response = """HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+
+<html>
+<head>
+    <title>TIGER AI DASHBOARD</title>
+    <style>
+        body { background-color: #0d1117; color: #58a6ff; font-f>
+        h1 { color: #238636; font-size: 50px; }
+        .box { border: 2px solid #21262d; padding: 20px; display>
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>TIGER AI SYSTEM</h1>
+        <p><b>[+] Status:</b> Server is 100% Secure and Live!</p>
+        <p><b>[+] Security Layer:</b> Porn-Blocker Core Active.<>
+    </div>
+</body>
+</html>
+"""
+        client_socket.sendall(html_response.encode('utf-8'))
+
+        client_socket.close()
+
+except Exception as e:
+    print(f"[!] Server Error: {e}")
