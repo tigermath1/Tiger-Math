@@ -1,0 +1,38 @@
+import multiprocessing
+import time
+import os
+
+def ai_heavy_cpu_task(core_name, dataset_size):
+    print(f"[*] [{core_name}] Process Active! Rnning on CPU PID: {pid} for Dataset: {dataset_size}")
+    
+    time.sleep(3)
+    print(f"[+] [{core_name}] (PID: {pid}) Mission Completed for Dataset: {dataset_size}!")
+
+if __name__ == '__main__':
+    os.system("clear")
+    print("=========================================")
+    print("[+] PROJECT: MULTI-PROCESSIN AI ENGINE   ")
+    print("=========================================")
+    
+    start_time = time.time()
+    
+    process1 = multiprocessing.Process(target=ai_heavy_cpu_task, args=("CPU-CORE-01", "10 Million Pixels"))
+  
+    process2 = multiprocessing.Process(target=ai_heavy_cpu_task, args=("CPU-CORE-02", "20 Million Pixels"))
+    
+    print("[*] Deploying separate CPU Cores with dedicated RAM address...")
+    print("-" * 55)
+    
+    process1.start()
+    process2.start()
+
+    process1.join()
+    process2.join()
+    
+    end_time = time.time()
+    total_duration = end_time - start_time
+    
+    print("-" * 55)
+    print(f"[+] Total Heavy Processing Time: {total_duration:.2f} seconds!")
+    print("[+] System Status: Heavy AI Data Processed via Multi-Core Grid!")
+    print("=========================================")
