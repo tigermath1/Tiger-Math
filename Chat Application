@@ -1,0 +1,46 @@
+import socket
+import os
+
+os.system("clear")
+print("=========================================")
+print("[+] CORE INTERACTION: CHAT SERVER ACTIVE ")
+print("=========================================")
+
+HOST = "127.0.0.1"
+PORT = 9999
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((HOST, PORT))
+server.listen(1)
+
+print(f"[*] Server listening on {HOST}:{PORT}")
+print("[*] Waiting for client connection...\n")
+
+client, address = server.accept()
+
+print(f"[+] Client Connected: {address}")
+print("[*] Type 'exit' to disconnect safely.")
+print("-" * 55)
+
+while True:
+    message = client.recv(1024).decode("utf-8")
+    if not message:
+        break
+
+    if message.lower() == "exit":
+        print("[-] Client Disconnected.")
+        break
+
+    print(f"[Client]: {message}")
+
+    reply = input("[You/Server]: ").strip()
+    client.sendall(reply.encode("utf-8"))
+
+    if reply.lower() == "exit":
+        break
+
+client.close()
+server.close()
+
+print("-" * 55)
+print("[+] Chat Server Terminated.")
