@@ -1,0 +1,51 @@
+import threading
+import time
+import os
+
+os.system("clear")
+print("=========================================")
+print("[+] PROJECT: MULTI-THREADING AI ENGINE   ")
+print("=========================================")
+
+# ১. ফায়ারওয়াল স্ক্যানিংয়ের মেইন কাজ (Function)
+def ai_scan_agent(gateway_name, target_ip):
+    print(f"[*] [{gateway_name}] Thread Launched! Starting Deep Scan on: {target_ip}")
+    
+    # ২. ছবির পিক্সেল বা ভিপিএন প্যাকেট এক্স-রে করতে ৩ সেকেন্ড সময় লাগছে
+    time.sleep(3) 
+    
+    # ৩. ফাইনাল অ্যাকশন
+    if target_ip == "192.168.1.5":
+        print(f"\n[!] ALERT from {gateway_name}: PORNO/VPN DETECTED on {target_ip}! PACKET DROPPED!")
+    else:
+        print(f"\n[+] SUCCESS from {gateway_name}: {target_ip} is CLEAN. ACCESS ALLOWED.")
+
+# =======================================================
+# 🚀 ৪. পাইথনের ২টি আলাদা হাত (Threads) তৈরি করা
+
+# ১ম হাত রেডি করছি বাংলাদেশ গেটওয়ের জন্য
+thread1 = threading.Thread(target=ai_scan_agent, args=("BD-Gateway-01", "8.8.8.8"))
+
+# ২য় হাত রেডি করছি ভিপিএন ট্রাফিক আটকানোর জন্য 
+thread2 = threading.Thread(target=ai_scan_agent, args=("Sovereign-Gate-02", "192.168.1.5"))
+
+# ৫. ওয়ান-ক্লিক একশন: ২টি হাতকে একই সাথে লাইভ ডিউটিতে নামিয়ে দেওয়া (Parallel Action)
+print("[*] Deploying both AI Scanner Threads AT THE SAME TIME...")
+print("-" * 55)
+
+start_time = time.time()
+
+thread1.start() # ১ম হাত কাজ শুরু করলো
+thread2.start() # ২য় হাতও একই সাথে কাজ শুরু করলো
+
+# ৬. ২টি হাতের কাজ শেষ হওয়া পর্যন্ত মেইন কোডকে অপেক্ষা করানো
+thread1.join()
+thread2.join()
+
+end_time = time.time()
+total_duration = end_time - start_time
+
+print("-" * 55)
+print(f"[+] Total Scanning Time for BOTH IPs: {total_duration:.2f} seconds!")
+print("[+] System Status: Parallel Scanning Mission Successful by TIGER!")
+print("=========================================")
