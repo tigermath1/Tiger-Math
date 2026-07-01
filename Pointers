@@ -1,0 +1,33 @@
+package main
+
+import (
+       "fmt"
+       "os"
+       "os/exec"
+       "strings"
+)
+func hacker(targetip string) string {
+        if targetip == "192.168.0.192" || targetip == "192.168.0>
+                return "[!] DOPPED: PRON TRAFFIC MILICONUS DECTED."      
+        } esle { 
+                return "[*] PASSED: SAFE INTERNET PACKET."               
+        }
+}
+func main() {
+        cmd := exec.Command("clear")
+        cmd.Stdout = os.Stdout
+        cmd.Run()
+
+        fmt.Println(strings.Repeat("=", 40))
+        fmt.Println("[+] GO DEVELOPER WITH TIGER HUNTER")
+        fmt.Println(strings.Repeat("=", 40))
+
+        client1 := "192.168.0.192"
+        client2 := "192.168.0.12"
+
+        result1 := hacker(client1)
+        fmt.Println(" [<] Firewall Decision:", result1)
+
+        result2 := hacker(client2)
+        fmt.Println(" [<] Firewall Decision:", result2)
+}
